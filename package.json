@@ -1,0 +1,27 @@
+{
+  "name": "playwright-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "regression": "npx playwright test",
+    "webTests": "npx playwright test --grep=Web",
+    "APITests": "npx playwright test --grep=API",
+    "pretest": "rm -rf allure-results",
+    "test": "playwright test",
+    "allure:build": "docker compose build allure",
+    "allure:generate": "rm -rf allure-report && docker compose run --rm allure generate allure-results",
+    "allure:open": "docker compose up -d allure-web && open http://localhost:8081",
+    "allure:stop": "docker compose down"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5",
+    "allure-playwright": "^3.14.0",
+    "exceljs": "^4.4.0"
+  }
+}

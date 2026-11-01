@@ -1,0 +1,15 @@
+{
+  "name": "Playwright Automation",
+  "output": "./allure-report",
+  "historyPath": "./allure-history/history.jsonl",
+  "historyLimit": 20,
+  "plugins": {
+    "awesome": {
+      "options": {
+        "reportName": "Playwright Automation",
+        "singleFile": false,
+        "reportLanguage": "en"
+      }
+    }
+  }
+}

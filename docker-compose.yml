@@ -1,0 +1,14 @@
+services:
+  allure:
+    build: ./docker/allure
+    image: allure3-local
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+
+  allure-web:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./allure-report:/usr/share/nginx/html:ro
