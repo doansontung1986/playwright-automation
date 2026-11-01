@@ -2,12 +2,9 @@ pipeline {
   agent any
 
   parameters {
-    choice(name: 'NPM_SCRIPT',
-           choices: ['regression', 'webTests', 'APITests'],
-           description: 'regression = tất cả | webTests = @web | APITests = @api')
     choice(name: 'BROWSER',
            choices: ['default', 'chromium', 'firefox', 'webkit'],
-           description: "'default' = chạy mọi project trong playwright.config.ts")
+           description: 'default = chạy mọi project trong playwright.config.ts')
     booleanParam(name: 'RUN_ALLURE', defaultValue: true,
                  description: 'Tạo Allure report')
   }
@@ -30,13 +27,16 @@ pipeline {
 
     stage('Test') {
       steps {
+        script {
+          currentBuild.description = "BROWSER: ${params.BROWSER}"
+        }
         sh 'rm -rf allure-results reports'
         sh '''
-          set --
-          if [ "$BROWSER" != "default" ]; then
-            set -- --project="$BROWSER"
+          if [ "$BROWSER" = "default" ]; then
+            npm run regression || true
+          else
+            npm run regression -- --project="$BROWSER" || true
           fi
-          npm run "$NPM_SCRIPT" -- "$@" || true
         '''
       }
     }
