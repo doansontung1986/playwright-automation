@@ -44,13 +44,13 @@ pipeline {
 
   post {
     always {
-      junit allowEmptyResults: false, testResults: 'reports/junit.xml'
+      archiveArtifacts artifacts: 'playwright-report/**, test-results/**', allowEmptyArchive: true
       script {
         if (params.RUN_ALLURE) {
           allure allureVersion: '3', includeProperties: false, results: [[path: 'allure-results']]
         }
       }
-      archiveArtifacts artifacts: 'playwright-report/**', allowEmptyArchive: true
+      junit allowEmptyResults: false, testResults: 'reports/junit.xml'
     }
   }
 }

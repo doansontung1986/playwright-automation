@@ -14,8 +14,8 @@ const config = {
     timeout: 5000,
   },
   reporter: [
-    ["html"],
     ["list"],
+    ["junit", { outputFile: "reports/junit.xml" }],
     ["allure-playwright", { resultsDir: "allure-results" }],
   ],
 
