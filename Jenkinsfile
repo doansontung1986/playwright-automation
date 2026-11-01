@@ -3,7 +3,7 @@ pipeline {
 
   parameters {
     choice(name: 'BROWSER',
-           choices: ['default', 'chromium', 'firefox', 'webkit'],
+           choices: ['default', 'chrome', 'firefox', 'webkit'],
            description: 'default = chạy mọi project trong playwright.config.ts')
     booleanParam(name: 'RUN_ALLURE', defaultValue: true,
                  description: 'Tạo Allure report')
