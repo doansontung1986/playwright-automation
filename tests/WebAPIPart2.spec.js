@@ -19,7 +19,7 @@ test.beforeAll(async ({ browser }) => {
   webContext = await browser.newContext({ storageState: "state.json" });
 });
 
-test("@API Test case 1", async ({}) => {
+test("Test case 1", { tag: "@api" }, async ({}) => {
   const page = await webContext.newPage();
   await page.goto("https://rahulshettyacademy.com/client/");
   const products = page.locator(".card-body");
@@ -80,7 +80,7 @@ test("@API Test case 1", async ({}) => {
   expect(orderId.includes(orderIdDetails)).toBeTruthy();
 });
 
-test("@API Test case 2", async ({}) => {
+test("Test case 2", { tag: "@api" }, async ({}) => {
   const page = await webContext.newPage();
   await page.goto("https://rahulshettyacademy.com/client/");
   const titles = await page.locator(".card-body b").allTextContents();

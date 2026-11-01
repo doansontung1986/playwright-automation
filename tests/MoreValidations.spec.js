@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-test("@Web Popup validation", async ({ page }) => {
+test("Popup validation", { tag: "@web" }, async ({ page }) => {
   await page.goto("https://rahulshettyacademy.com/AutomationPractice/");
   await expect(page.locator("#displayed-text")).toBeVisible();
   await page.locator("#hide-textbox").click();

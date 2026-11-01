@@ -6,7 +6,8 @@ for (const data of DataSet) {
     customTest.use({ testDataForOrder: data });
 
     customTest(
-      `@Web Client App login for ${data.productName}`,
+      `Client App login for ${data.productName}`,
+      { tag: "@web" },
       async ({ authenticatedPage }) => {
         const dashboardPage = authenticatedPage.getDashboardPage();
         await dashboardPage.searchProduct(data.productName);

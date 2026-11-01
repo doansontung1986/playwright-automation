@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-test("@API Security test request intercept", async ({ page }) => {
+test("Security test request intercept", { tag: "@api" }, async ({ page }) => {
   const email = "doansontung2608@gmail.com";
   const password = "Test@123";
   await page.goto("https://rahulshettyacademy.com/client/");

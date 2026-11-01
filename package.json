@@ -8,7 +8,6 @@
     "webTests": "npx playwright test --grep=Web",
     "APITests": "npx playwright test --grep=API",
     "pretest": "rm -rf allure-results",
-    "test": "playwright test",
     "allure:build": "docker compose build allure",
     "allure:generate": "rm -rf allure-report && docker compose run --rm allure generate allure-results",
     "allure:open": "docker compose up -d allure-web && open http://localhost:8081",

@@ -8,7 +8,7 @@ import { on, worker, workers } from "node:cluster";
 const config = {
   testDir: "./tests",
   retries: 1,
-  workers: 6,
+  workers: process.env.CI ? 4 : 6,
   timeout: 30 * 1000,
   expect: {
     timeout: 5000,
@@ -19,15 +19,42 @@ const config = {
     ["allure-playwright", { resultsDir: "allure-results" }],
   ],
 
-  use: {
-    actionTimeout: 10 * 1000,
-    navigationTimeout: 30 * 1000,
-    browserName: "chromium",
-    headless: true,
-    screenshot: "on",
-    video: "retain-on-failure",
-    trace: "on",
-  },
+  projects: [
+    {
+      name: "chrome",
+      use: {
+        browserName: "chromium",
+        headless: true,
+        screenshot: "retain-on-failure",
+        video: "retain-on-failure",
+        trace: "retain-on-failure",
+        // viewport: { width: 1024, height: 768 },
+        ignoreHttpsErrors: true,
+        permissions: ["geolocation"],
+      },
+    },
+    {
+      name: "firefox",
+      use: {
+        browserName: "firefox",
+        headless: true,
+        screenshot: "retain-on-failure",
+        video: "retain-on-failure",
+        trace: "retain-on-failure",
+      },
+    },
+    {
+      name: "safari",
+      use: {
+        browserName: "webkit",
+        headless: true,
+        screenshot: "retain-on-failure",
+        video: "retain-on-failure",
+        trace: "retain-on-failure",
+        ...devices["iPad (gen 6)"],
+      },
+    },
+  ],
 };
 
 module.exports = config;
